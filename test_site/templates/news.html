@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "headline": "News",
+  "description": "This is the news page. Here we intentionally violate the hreflang rule for demonstration purposes.",
+  "author": {
+    "@type": "Person",
+    "name": "Author Name"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "News Portal",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://0.0.0.0:8000/static/images/logo.png"
+    }
+  },
+  "url": "https://0.0.0.0:8000/news",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://0.0.0.0:8000/news"
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section itemscope itemtype="https://schema.org/NewsArticle">
+    <h2 itemprop="headline">News</h2>
+    <p itemprop="description">This is the news page. Here we intentionally violate the hreflang rule for demonstration purposes.</p>
+    <meta itemprop="author" content="Author Name">
+    <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="News Portal">
+        <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+            <meta itemprop="url" content="/static/images/logo.png">
+        </div>
+    </div>
+</section>
+{% endblock %}

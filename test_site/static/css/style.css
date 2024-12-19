@@ -1,0 +1,158 @@
+/* Общий стиль */
+body {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to bottom, #ffecd2, #fcb69f);
+    color: #444;
+}
+
+/* Шапка сайта */
+header {
+    background: linear-gradient(45deg, #ff6f61, #ffcc61);
+    color: #fff;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Навигация */
+header nav {
+    margin-top: 1rem;
+}
+
+header nav a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+header nav a:hover {
+    color: #ffcc61;
+}
+
+header nav a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #fff;
+    transition: width 0.3s;
+    margin: 0 auto;
+}
+
+header nav a:hover::after {
+    width: 100%;
+}
+
+/* Контейнер для основного контента */
+.content-container {
+    display: flex;
+    justify-content: center; /* Центрируем контент по горизонтали */
+    padding: 20px;
+}
+
+/* Основной контент */
+main {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%; /* Ограничиваем ширину относительно экрана */
+    max-width: 900px; /* Максимальная ширина */
+    line-height: 1.8;
+    text-align: justify; /* Выравнивание текста по ширине */
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Подвал */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: linear-gradient(45deg, #ffcc61, #ff6f61);
+    color: #fff;
+    font-size: 0.9rem;
+    position: relative;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Медиазапросы для адаптивности */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem; /* Уменьшаем размер шрифта заголовка на мобильных устройствах */
+    }
+
+    header nav a {
+        font-size: 1rem; /* Уменьшаем размер шрифта ссылок */
+        margin: 0 10px; /* Уменьшаем отступы между ссылками */
+    }
+
+    .content-container {
+        width: 95%; /* Увеличиваем ширину контейнера для мобильных устройств */
+        padding: 0 10px;
+    }
+
+    main {
+        width: 100%; /* Делаем основной контент на всю ширину */
+        max-width: none; /* Убираем ограничение по максимальной ширине */
+    }
+
+    footer {
+        font-size: 0.8rem; /* Уменьшаем размер шрифта в подвале */
+    }
+}
+
+/* Стили для кнопки */
+button {
+    background-color: #4CAF50; /* Зеленый цвет фона */
+    color: white; /* Белый цвет текста */
+    border: none; /* Без рамки */
+    padding: 10px 20px; /* Отступы */
+    text-align: center; /* Выравнивание текста по центру */
+    text-decoration: none; /* Убираем подчеркивание */
+    display: inline-block; /* Блоковый элемент */
+    font-size: 16px; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде руки */
+    border-radius: 5px; /* Скругленные углы */
+    transition: background-color 0.3s ease; /* Плавный переход цвета */
+}
+
+/* Изменение цвета при наведении */
+button:hover {
+    background-color: #45a049;
+}
+
+/* Позиционирование кнопки внизу */
+.content-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+button {
+    margin-top: auto; /* Кнопка будет внизу */
+    align-self: center; /* Центрируем кнопку */
+    margin-bottom: 20px; /* Отступ снизу */
+}

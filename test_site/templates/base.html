@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <title>News Site - {% block title %}{% endblock %}</title>
+
+    <meta property="og:title" content="{% if og_title %}{{ og_title }}{% else %}Default Title{% endif %}">
+    <meta property="og:description" content="{% if og_description %}{{ og_description }}{% else %}Default description of the site{% endif %}">
+    <meta property="og:image" content="{% if og_image %}{{ og_image }}{% else %}/static/images/default_image.jpg{% endif %}">
+
+    {% if canonical_url %}
+    <link rel="canonical" href="{{ canonical_url }}">
+    {% endif %}
+
+    {% if hreflangs %}
+    {% for lang, url in hreflangs.items() %}
+    <link rel="alternate" hreflang="{{ lang }}" href="{{ url }}">
+    {% endfor %}
+    {% endif %}
+
+    {% block schema %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "{{ og_title }}",
+      "description": "{{ og_description }}",
+      "url": "https://0.0.0.0:8000/",
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://0.0.0.0:8000{{ og_image }}",
+        "height": 800,
+        "width": 1200
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "News Portal",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://0.0.0.0:8000/static/images/logo.png"
+        }
+      }
+    }
+    </script>
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <h1>News Portal</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/category/technology">Technology</a>
+            <a href="/category/sports">Sports</a>
+            <a href="/category/health">Health</a>
+            <a href="/category/culture">Culture</a>
+            <a href="/news">News</a>
+            <a href="/page-404">Page 404 (simulate error)</a>
+        </nav>
+    </header>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p><a href="/about_us">About Us</a> | <a href="/контакты">Контакты</a></p>
+        <p>© 2024 News Portal | Stay Bright!</p>
+    </footer>
+</body>
+</html>

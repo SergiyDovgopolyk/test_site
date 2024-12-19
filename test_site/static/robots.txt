@@ -1,0 +1,13 @@
+# Разрешаем доступ всем поисковым системам ко всему контенту
+User-agent: *
+Disallow: /private/
+
+# Для Googlebot
+User-agent: Googlebot
+Disallow: /no-google/
+
+# Для Bingbot
+User-agent: Bingbot
+Disallow: /no-bing/
+
+Sitemap: http://127.0.0.1:8000/static/sitemap.xml

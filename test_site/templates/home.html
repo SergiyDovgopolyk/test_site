@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section itemscope itemtype="https://schema.org/Blog">
+    <h2>Latest News</h2>
+    <ul>
+        {% for article in articles %}
+        <li itemscope itemprop="blogPost" itemtype="https://schema.org/BlogPosting">
+            <a href="/category/{{ article.category | lower }}/article/{{ article.id }}" itemprop="url">
+                <span itemprop="headline">{{ article.title }}</span>
+            </a>
+            <meta itemprop="author" content="{{ article.author }}">
+            <meta itemprop="description" content="{{ article.summary }}">
+            <meta itemprop="image" content="{{ article.image }}">
+            <div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+                <meta itemprop="name" content="News Portal">
+                <div itemprop="logo" itemscope itemtype="https://schema.org/ImageObject">
+                    <meta itemprop="url" content="/static/images/logo.png">
+                </div>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+
+<section>
+    <h2>Special Page</h2>
+    <ul>
+        <li itemscope itemtype="https://schema.org/WebPage">
+            <a href="/this-is-an-example-of-a-very-long-url-that-contains-more-than-one-hundred-and-fifteen-characters-which-make-it-very-long" itemprop="url">
+                <span itemprop="name">Long URL Page</span>
+            </a>
+        </li>
+    </ul>
+</section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}
+Контакты
+{% endblock %}
+
+{% block content %}
+
+{% block schema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ page_title }}",
+  "description": "{{ page_description }}",
+  "url": "{{ request.url }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "News Portal",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "/static/images/logo.png"
+    }
+  }
+}
+</script>
+{% endblock %}
+
+<section>
+    <h1>Контакты</h1>
+    <p>Вы можете связаться с нами по следующим контактам:</p>
+    <ul>
+        <li>Email: support@example.com</li>
+        <li>Телефон: +123 456 7890</li>
+    </ul>
+</section>
+<a href="/">Назад на главную</a>
+{% endblock %}

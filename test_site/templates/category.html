@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Articles in {{ category }}</h2>
+<ul>
+    {% for article in articles %}
+    <li>
+        <a href="/category/{{ category }}/article/{{ article.id }}">{{ article.title }}</a>
+
+        <!-- Schema.org Microdata for each article -->
+        <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            "headline": "{{ article.title }}",
+            "description": "{{ article.description }}",
+            "url": "https://0.0.0.0:8000/category/{{ category }}/article/{{ article.id }}",
+            "image": {
+                "@type": "ImageObject",
+                "url": "https://0.0.0.0:8000{{ article.image }}",
+                "height": 800,
+                "width": 600
+            },
+            "author": {
+                "@type": "Person",
+                "name": "{{ article.author_name }}"
+            },
+            "datePublished": "2024-12-18T00:00:00Z",
+            "publisher": {
+                "@type": "Organization",
+                "name": "News Portal",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://0.0.0.0:8000/static/images/logo.png"
+                }
+            }
+        }
+        </script>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <title>{{ article.title }}</title>
+
+    <meta name="description" content="{{ article.description }}">
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "{{ article.title }}",
+          "description": "{{ article.description }}",
+          "datePublished": "{{ article.date.isoformat() if article.date else '' }}",
+          "dateModified": "{{ article.date.isoformat() if article.date else '' }}",
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https://0.0.0.0:8000/category/{{ category_name }}/article/{{ article.id }}"
+          },
+          "url": "https://0.0.0.0:8000/category/{{ category_name }}/article/{{ article.id }}",
+          "image": {
+            "@type": "ImageObject",
+            "url": "https://0.0.0.0:8000{{ article.image_url }}",
+            "height": 800,
+            "width": 600
+          },
+          "author": {
+            "@type": "Person",
+            "name": "{{ article.author_name }}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "News Portal",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "/static/images/logo.png"
+            }
+          }
+        }
+    </script>
+</head>
+<body>
+    <div class="content-container">
+        <section itemscope itemtype="https://schema.org/Article">
+            <h1 itemprop="headline">{{ article.title }}</h1>
+
+            <p><strong>Published on:</strong>
+                <time itemprop="datePublished" datetime="{{ article.date | date('%Y-%m-%d') if article.date else '' }}">
+                    {{ article.date | default('No date available') }}
+                </time>
+            </p>
+
+            <p><strong>Author:</strong> <span itemprop="author">{{ article.author_name }}</span></p>
+
+            <meta itemprop="datePublished" content="{{ article.date.isoformat() if article.date else '' }}">
+            <meta itemprop="dateModified" content="{{ article.date.isoformat() if article.date else '' }}">
+            <meta itemprop="author" content="{{ article.author_name }}">
+            <meta itemprop="description" content="{{ article.description }}">
+
+            <div itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+                <meta itemprop="url" content="https://example.com{{ article.image_url }}">
+                <meta itemprop="height" content="800">
+                <meta itemprop="width" content="600">
+            </div>
+
+            <div itemprop="articleBody">
+                {{ article.content | safe }}
+            </div>
+        </section>
+        <div>
+            <a href="/category/{{ category_name }}" itemprop="url">Back to {{ category_name }}</a>
+        </div>
+    </div>
+</body>
+</html>
